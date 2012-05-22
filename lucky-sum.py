@@ -7,12 +7,6 @@ def operation_results(a, b):
         except ZeroDivisionError:
             pass
 
-#def filter_bad_values(a):
-#    from math import modf
-#    res = []
-#    for i in a:
-#        if modf(a[0])[0]
-
 def find_lucky_sum(number):
     number = str(number)
     n = len(number)
@@ -25,6 +19,8 @@ def find_lucky_sum(number):
 
     for i in xrange(n):
         for j in xrange(n - i):
+            if number[i] == '0' and j > 0:
+                continue
             d[j][i].append((float(number[i:i+j + 1]), number[i:i+j + 1]))
 
     for i in xrange(1, n):
@@ -43,8 +39,25 @@ def test(d):
         for j in xrange(1, 7):
             assert(i[1].count(str(j)) == 1)
 
+def ivanov(number):
+    # function prints all alternatives of getting 1000 with the number
+    # and all number from 0 to 999 that can be get
+    from math import modf
+    t = find_lucky_sum(number)
+    thousands = []
+    numbers = []
+    for i in t:
+        if modf(i[0])[0]:
+            continue
+        if i[0] == 1000:
+            thousands.append(i[1])
+        elif 0 <= i[0] < 1000:
+            numbers.append(int(i[0]))
+    print '1000 = '
+    for i in thousands:
+        print i
+    print ''
+    print sorted(set(numbers))
+
 if __name__ == '__main__':
-    f = open('lol.txt', 'w')
-    f.write(str(find_lucky_sum(1234)))
-
-
+    ivanov(101010)
