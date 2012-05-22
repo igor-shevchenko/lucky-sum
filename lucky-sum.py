@@ -29,23 +29,22 @@ def find_lucky_sum(number):
 
     for i in xrange(1, n):
         for j in xrange(n - i):
-            for lhs in d[i - 1][j]:
-                for rhs in d[0][j + i]:
-                    for res in operation_results(lhs, rhs):
-                        d[i][j].append(res)
+            for k in xrange(i):
+                for lhs in d[k][j]:
+                    for rhs in d[i-k-1][k+j + 1]:
+                        for res in operation_results(lhs, rhs):
+                            d[i][j].append(res)
 
-            if i == 1:
-                # in this case the next cycle is the same as first
-                continue
+    return d[-1][0]
 
-            for rhs in d[i - 1][j + 1]:
-                for lhs in d[0][j]:
-                    for res in operation_results(lhs, rhs):
-                        d[i][j].append(res)
 
-    return len(d[-1][0])
-
+def test(d):
+    for i in d:
+        for j in xrange(1, 7):
+            assert(i[1].count(str(j)) == 1)
 
 if __name__ == '__main__':
     f = open('lol.txt', 'w')
-    f.write(str(find_lucky_sum(123456)))
+    f.write(str(find_lucky_sum(1234)))
+
+
