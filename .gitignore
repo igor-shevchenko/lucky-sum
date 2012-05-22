@@ -28,3 +28,6 @@ pip-log.txt
 
 # IDE files
 .idea/*
+
+# log files
+lol.txt
