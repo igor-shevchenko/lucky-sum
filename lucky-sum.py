@@ -1,3 +1,4 @@
+# Igor Shevchenko, PS-398
 def operation_results(a, b):
     from operator import add, sub, mul, div
     operations = ((add, '+'), (sub, '-'), (mul, '*'), (div, '/'))
@@ -41,7 +42,7 @@ def test(d):
 
 def ivanov(number):
     # function prints all alternatives of getting 1000 with the number
-    # and all number from 0 to 999 that can be get
+    # and all numbers from 0 to 999 that can be got
     from math import modf
     t = find_lucky_sum(number)
     thousands = []
@@ -53,11 +54,12 @@ def ivanov(number):
             thousands.append(i[1])
         elif 0 <= i[0] < 1000:
             numbers.append(int(i[0]))
-    print '1000 = '
-    for i in thousands:
-        print i
-    print ''
+    if thousands:
+        print '1000 = '
+        for i in thousands:
+            print i
+        print ''
     print sorted(set(numbers))
 
 if __name__ == '__main__':
-    ivanov(101010)
+    ivanov(100000)
